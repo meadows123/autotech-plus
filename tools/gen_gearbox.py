@@ -13,7 +13,7 @@ import shutil
 from datetime import date
 from pathlib import Path
 
-from gen_pages import ARROW, FACEBOOK, PHONE_SVG
+from gen_pages import ARROW, FACEBOOK, PHONE_SVG, brandbar
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'bristolgearbox'
@@ -27,7 +27,7 @@ GOOGLE_REVIEWS = 'https://www.google.com/maps/search/?api=1&amp;query=AutoTech+P
 TODAY = date.today().isoformat()
 
 # Files copied from the main site so the folder works on its own domain
-SHARED = ['css/styles.css', 'js/main.js', 'js/pages.js', 'assets/ico32.png', 'assets/ico180.png', 'assets/logo-autotech.png', 'assets/logo-bristol-gearbox.png',
+SHARED = ['css/styles.css', 'js/main.js', 'js/pages.js', 'js/booking.js', 'assets/ico32.png', 'assets/ico180.png', 'assets/logo-autotech.png', 'assets/logo-bristol-gearbox.png',
           'assets/pages/gearbox.jpg', 'assets/pages/diagnostics.jpg', 'assets/pages/servicing.jpg', 'assets/pages/brakes.jpg',
           'assets/pages/hero-services.jpg', 'assets/pages/hero-contact.jpg', 'assets/pages/hero-faq.jpg', 'assets/pages/remapping.jpg',
           'assets/services/gearbox.mp4', 'assets/services/gearbox.jpg', 'assets/workshop.jpg']
@@ -103,7 +103,7 @@ def header(p, current):
         for label, href in NAV)
     return f'''
   <!-- ============ NAV ============ -->
-  <header class="nav nav--gb" id="nav">
+  <header class="nav nav--gb" id="nav">{brandbar('bg', MAIN, p or './')}
     <div class="wrap nav__inner">
       <a href="{p or './'}" class="nav__logo gb-logo" aria-label="Bristol Gearbox home">
         <img src="{p}assets/logo-bristol-gearbox.png" alt="Bristol Gearbox" width="332" height="96">
@@ -163,6 +163,7 @@ def footer(p):
 
   <script src="{p}js/main.js" defer></script>
   <script src="{p}js/pages.js" defer></script>
+  <script src="{p}js/booking.js" defer></script>
 </body>
 </html>
 '''
@@ -297,7 +298,7 @@ CROSS = f'''
       </div>
       <div class="gb-cross__actions">
         <a class="btn btn--dark" href="{MAIN}services.html">AutoTech Plus services {ARROW}</a>
-        <a class="btn btn--ghost" href="{MAIN}#book">Book an MOT</a>
+        <a class="btn btn--ghost" href="#book" data-book>Book an MOT</a>
       </div>
     </div>
   </section>
@@ -632,8 +633,8 @@ def contact():
         <aside class="contact-side">
           <div class="help-card help-card--amber">
             <h3>Need an MOT too?</h3>
-            <p>Our sister garage AutoTech Plus is at the same address. Book online in under a minute.</p>
-            <a class="btn btn--dark" href="{MAIN}#book">Book an MOT {ARROW}</a>
+            <p>Our MOT centre, AutoTech Plus, is in the same workshop. Pick a time right here in under a minute.</p>
+            <a class="btn btn--dark" href="#book" data-book>Book an MOT {ARROW}</a>
           </div>
           <div class="help-card">
             <h3>Follow us</h3>

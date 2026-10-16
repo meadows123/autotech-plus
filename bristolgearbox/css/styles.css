@@ -16,11 +16,12 @@
   --wrap: 1240px;
   --font-head: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
   --font-body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bar: 34px; /* brand bar above the nav */
   color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(80px + var(--bar)); }
 body {
   margin: 0;
   background: var(--ink);
@@ -382,7 +383,7 @@ p { margin: 0 0 1em; }
   .nav__inner { height: 68px; }
   .nav__logo img { height: 26px; }
   .nav__links {
-    position: fixed; inset: 68px 0 auto; flex-direction: column; gap: 0; background: rgba(13,15,20,.97); backdrop-filter: blur(12px);
+    position: fixed; inset: calc(68px + var(--bar)) 0 auto; flex-direction: column; gap: 0; background: rgba(13,15,20,.97); backdrop-filter: blur(12px);
     padding: 10px 20px 24px; transform: translateY(-120%); transition: transform .35s ease; box-shadow: 0 1px 0 var(--line);
   }
   .nav__links a { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 1.2rem; }
@@ -459,7 +460,7 @@ p { margin: 0 0 1em; }
 .page-hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
 
 /* Services page */
-.jump { position: sticky; top: 68px; z-index: 30; background: rgba(13,15,20,.85); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.jump { position: sticky; top: calc(68px + var(--bar)); z-index: 30; background: rgba(13,15,20,.85); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
 .jump__inner { display: flex; gap: 8px; overflow-x: auto; padding-top: 12px; padding-bottom: 12px; scrollbar-width: none; }
 .jump__inner::-webkit-scrollbar { display: none; }
 .jump a, .chip {
@@ -687,7 +688,7 @@ a.c-card:hover { transform: translateY(-4px); box-shadow: inset 0 0 0 1px rgba(2
   .page-hero { min-height: 0; }
   .page-hero__inner { padding-top: 120px; padding-bottom: 50px; }
   .page-hero__lead { font-size: 1.05rem; }
-  .jump { top: 68px; }
+  .jump { top: calc(68px + var(--bar)); }
   .svc-list { padding-top: 40px; }
   .svc-row { grid-template-columns: 1fr; gap: 26px; padding: 40px 0; scroll-margin-top: 130px; }
   .svc-row--flip .svc-row__media { order: 0; }
@@ -731,7 +732,7 @@ a.c-card:hover { transform: translateY(-4px); box-shadow: inset 0 0 0 1px rgba(2
 
 .gb-split { display: grid; grid-template-columns: 1fr 420px; gap: 70px; align-items: start; }
 .gb-split > * { min-width: 0; }
-.gb-aside { position: sticky; top: 100px; display: grid; gap: 18px; }
+.gb-aside { position: sticky; top: calc(100px + var(--bar)); display: grid; gap: 18px; }
 .gb-aside .contact__form { padding: 30px; }
 .gb-aside .contact__form h3 { font-size: 1.7rem; }
 .contact__intro { color: var(--muted); margin: -4px 0 4px; }
@@ -788,4 +789,26 @@ a.c-card:hover { transform: translateY(-4px); box-shadow: inset 0 0 0 1px rgba(2
   .gb-post img { min-height: 0; aspect-ratio: 16 / 9; }
   .gb-post > div { padding: 26px 22px; }
   .page-hero--home { min-height: 0; }
+}
+
+/* ---------- Brand bar: AutoTech Plus + Bristol Gearbox ---------- */
+.brandbar { height: var(--bar); background: #07080b; border-bottom: 1px solid var(--line); font: 500 .74rem "DM Mono", ui-monospace, monospace; text-transform: uppercase; letter-spacing: .12em; }
+.brandbar__inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 100%; }
+.brandbar__sites { display: flex; height: 100%; }
+.brandbar__sites a { position: relative; display: flex; align-items: center; padding: 0 16px; color: var(--muted); transition: color .2s; white-space: nowrap; }
+.brandbar__sites a:first-child { padding-left: 0; }
+.brandbar__sites a + a { border-left: 1px solid var(--line); }
+.brandbar__sites a span { color: #5f646f; transition: color .2s; margin-left: .55em; }
+.brandbar__sites a:hover, .brandbar__sites a.is-current { color: var(--white); }
+.brandbar__sites a:hover span { color: var(--muted); }
+.brandbar__sites a.is-current::after { content: ""; position: absolute; left: 0; right: 16px; bottom: -1px; height: 2px; background: var(--amber); }
+.brandbar__sites a + a.is-current::after { left: 16px; }
+.brandbar__info { margin: 0; color: #5f646f; white-space: nowrap; }
+.brandbar__info a { color: var(--muted); }
+.brandbar__info a:hover { color: var(--amber); }
+@media (max-width: 1100px) { .brandbar__info { display: none; } }
+@media (max-width: 860px) {
+  :root { --bar: 32px; }
+  .brandbar { font-size: .68rem; letter-spacing: .08em; }
+  .brandbar__sites a span { display: none; }
 }

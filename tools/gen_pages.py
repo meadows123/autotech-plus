@@ -36,13 +36,30 @@ def head(title, desc, extra=''):
 '''
 
 
+def brandbar(site, atp_href, bg_href):
+    """Thin strip across the top of both sites (AutoTech Plus and Bristol Gearbox) so they read as one business."""
+    def link(key, href, name, tag):
+        cur = ' class="is-current" aria-current="true"' if key == site else ''
+        return f'<a href="{href}"{cur}>{name}<span> &middot; {tag}</span></a>'
+    return f'''
+    <div class="brandbar">
+      <div class="wrap brandbar__inner">
+        <nav class="brandbar__sites" aria-label="Our garages">
+          {link('atp', atp_href, 'AutoTech Plus', 'MOT, servicing &amp; repairs')}
+          {link('bg', bg_href, 'Bristol Gearbox', 'Gearbox specialists')}
+        </nav>
+        <p class="brandbar__info">8 Bonville Rd, Brislington &middot; <a href="tel:+441173292050">0117 329 2050</a></p>
+      </div>
+    </div>'''
+
+
 def header(current):
     links = '\n'.join(
         f'        <a href="{href}"{" class=\"is-current\" aria-current=\"page\"" if key is not None and key == current else ""}>{label}</a>'
         for label, href, key in NAV)
     return f'''
   <!-- ============ NAV ============ -->
-  <header class="nav" id="nav">
+  <header class="nav" id="nav">{brandbar('atp', 'index.html', GEARBOX)}
     <div class="wrap nav__inner">
       <a href="index.html" class="nav__logo" aria-label="AutoTech Plus home">
         <img src="assets/logo-autotech.png" alt="AutoTech Plus Ltd" width="300" height="44">
