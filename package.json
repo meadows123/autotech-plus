@@ -1,0 +1,14 @@
+{
+  "name": "autotech-plus",
+  "private": true,
+  "version": "1.0.0",
+  "description": "AutoTech Plus website prototype",
+  "scripts": {
+    "dev": "python3 dev-server.py",
+    "build:3d": "esbuild src/hero3d.js --bundle --minify --format=iife --target=es2019 --outfile=js/hero3d.js"
+  },
+  "devDependencies": {
+    "esbuild": "0.20.2",
+    "three": "0.160.0"
+  }
+}

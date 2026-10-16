@@ -1,0 +1,65 @@
+{
+  "trailingSlash": "always",
+  "routes": [
+    {
+      "route": "/sample-page*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/pass-plus*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/locations*",
+      "redirect": "/book-now/",
+      "statusCode": 301
+    },
+    {
+      "route": "/home*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/category/*",
+      "redirect": "/blog/",
+      "statusCode": 301
+    },
+    {
+      "route": "/author/*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/feed*",
+      "redirect": "/blog/",
+      "statusCode": 301
+    },
+    {
+      "route": "/comments/feed*",
+      "redirect": "/blog/",
+      "statusCode": 301
+    },
+    {
+      "route": "/courses/*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/wp-sitemap.xml",
+      "redirect": "/sitemap.xml",
+      "statusCode": 301
+    },
+    {
+      "route": "/sitemap_index.xml",
+      "redirect": "/sitemap.xml",
+      "statusCode": 301
+    }
+  ],
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/404.html"
+    }
+  }
+}

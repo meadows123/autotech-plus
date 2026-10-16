@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bristolgearbox.co.uk/sitemap.xml
