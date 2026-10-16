@@ -33,10 +33,10 @@ SHARED = ['css/styles.css', 'js/main.js', 'js/pages.js', 'assets/ico32.png', 'as
           'assets/services/gearbox.mp4', 'assets/services/gearbox.jpg', 'assets/workshop.jpg']
 
 GBOX = [  # slug, name, short text, typical cars
-    ('powershift', 'Powershift', 'Ford’s dual-clutch automatic. Judder, slipping and TCM faults diagnosed and fixed.', 'Fiesta · Focus · Kuga · Mondeo'),
-    ('dsg', 'DSG', 'Volkswagen Group dual-clutch gearboxes: mechatronics, clutches, servicing and rebuilds.', 'VW · Audi · SEAT · Škoda'),
-    ('cvt', 'CVT', 'Continuously variable transmissions, including Audi Multitronic.', 'Toyota · Nissan · Honda · Audi'),
-    ('semi-auto', 'Semi-auto', 'Automated manual gearboxes: clutch actuators, calibration and control units.', 'Automated manuals'),
+    ('powershift', 'Powershift', 'Ford’s automatic gearbox. Juddering, slipping and warning lights fixed.', 'Fiesta · Focus · Kuga · Mondeo'),
+    ('dsg', 'DSG', 'The automatic gearbox in most VW, Audi, SEAT and Škoda cars. Repairs and servicing.', 'VW · Audi · SEAT · Škoda'),
+    ('cvt', 'CVT', 'The smooth, gearless automatic found in many Toyotas, Nissans and Hondas.', 'Toyota · Nissan · Honda · Audi'),
+    ('semi-auto', 'Semi-auto', 'Manual gearboxes with an automatic clutch. Not changing gear? We’ll sort it.', 'Many small cars'),
 ]
 
 NAV = [('Home', ''), ('About us', 'about/'), ('Powershift', 'powershift/'), ('DSG', 'dsg/'), ('CVT', 'cvt/'), ('Semi-auto', 'semi-auto/'),
@@ -339,10 +339,10 @@ def write(slug, body):
 # ---------------------------------------------------------------- home
 def home():
     p = ''
-    steps = [('Diagnosis', 'Up-to-date Bosch diagnostic equipment with dedicated gearbox interfaces reads everything the gearbox controller has recorded.'),
-             ('Report &amp; quote', 'You get a clear report on the gearbox’s condition and a quote before any work starts. No surprises.'),
-             ('Repair or rebuild', 'Clutches, control units, mechatronics, dual-mass flywheels, a full rebuild or a quality replacement unit, whatever the fault needs.'),
-             ('Warranty', 'Every repair is covered by a warranty, and we only replace parts that actually need replacing.')]
+    steps = [('Find the fault', 'We plug into your car’s computer and test the gearbox to see exactly what’s wrong.'),
+             ('Clear price', 'We explain what we found and give you a price before any work starts.'),
+             ('Repair or rebuild', 'We fix the faulty part, rebuild the gearbox or fit a replacement, whichever makes most sense.'),
+             ('Warranty', 'Every repair comes with a warranty.')]
     steps_html = ''.join(f'<li><span>{i + 1:02d}</span><div><h4>{t}</h4><p>{d}</p></div></li>' for i, (t, d) in enumerate(steps))
     body = (head(p, '', 'Gearbox Repair Bristol | Powershift, DSG &amp; Automatic Specialists | Bristol Gearbox',
                  'Bristol Gearbox: gearbox and transmission repair specialists in Brislington, Bristol. Powershift, DSG, CVT and semi-automatic gearboxes diagnosed, repaired and rebuilt. Free quotes: 0117 329 2050.',
@@ -429,74 +429,57 @@ def home():
 TYPES = {
     'powershift': dict(
         title='Ford Powershift Gearbox Repair Bristol | Bristol Gearbox',
-        desc='Ford Powershift gearbox repair in Bristol. Clutch judder, slipping and TCM faults diagnosed with Bosch equipment, then repaired or rebuilt with a warranty. Free quotes.',
+        desc='Ford Powershift gearbox repair in Bristol. Juddering, slipping or a gearbox warning light? We find the fault and fix it, with a warranty. Free quotes.',
         h1='Powershift <span class="accent">gearbox repair</span>', crumb='Powershift', img='assets/pages/gearbox.jpg',
-        lead='Juddering, slipping or a “transmission malfunction” warning? We diagnose, repair and rebuild Ford Powershift gearboxes, including the clutches, the control module (TCM) and the complete unit.',
+        lead='Juddering, slipping or a “transmission malfunction” warning on your Ford? We find the fault and fix it.',
         prose=f'''
-        <h2>What is a Powershift gearbox?</h2>
-        <p>Powershift is Ford’s six-speed dual-clutch automatic gearbox. It works much like Volkswagen’s DSG: inside are effectively two gearboxes, each with its own clutch. One clutch handles the odd gears and the other the even gears, so the next gear is always ready. The result is quick, smooth changes and lower fuel consumption than a traditional automatic.</p>
-        <p>There are two main versions. Smaller Fords such as the Fiesta, Focus, B-Max and EcoSport use a dry-clutch Powershift, where the clutches are operated electrically. Larger models such as the Mondeo, S-Max, Galaxy and Kuga use a wet-clutch version that runs in oil.</p>
-        <h2>Common Powershift problems</h2>
-        {signs(['Judder or shudder when pulling away, especially in slow traffic', 'Slipping, or a delay before the car moves', 'Harsh, clunky or jerky gear changes', 'Loss of drive or dropping into neutral', '“Transmission malfunction” or overheating warnings', 'Oil from leaking seals contaminating the dry clutches'])}
-        <h3>Powershift diagnostics</h3>
-        <p>We use up-to-date Bosch diagnostic systems with dedicated interfaces for automatic gearboxes. They read everything the gearbox controller has recorded, so we can pinpoint the fault precisely rather than guess. You get a report on the gearbox’s condition, including things like the oil level, and every repair is based on it.</p>
-        <h3>Powershift repair and replacement</h3>
-        <p>Depending on the diagnosis, we can renew the clutches, repair or replace the control module (TCM), replace seals and actuators, rebuild the gearbox or fit a high-quality replacement unit. We assess each component, so parts that work aren’t replaced unnecessarily.</p>
-        <h3>Powershift servicing</h3>
-        <p>Because of its dual-clutch design, a Powershift is more involved to service than a conventional gearbox. After clutch or control-module work, the clutches need a relearn with diagnostic equipment so the car drives as it should. We do this as standard.</p>''',
-        faq=[('How much does a Powershift repair cost?', 'It depends which part needs work: the dual-mass flywheel, the clutch, the gearbox itself or the control module, or a combination of these. Once we’ve diagnosed the fault we give you a clear quote before any work starts. Call us for a guide price.'),
-             ('Is there a warranty on Powershift repairs?', 'Yes. Our repairs and rebuilds of Powershift clutches and gearboxes come with a warranty, and we’ll confirm the terms with your quote.'),
-             ('How long will a repaired Powershift gearbox last?', 'A professionally repaired and rebuilt clutch or gearbox is restored to the same specification as a new part. With the same driving style and use, you can expect a service life similar to the original components.'),
-             ('Does a rebuild change how the gearbox drives?', 'No. A rebuilt Powershift clutch, gearbox or controller is restored to factory specification, and its technical parameters don’t change.')]),
+        <h2>What is Powershift?</h2>
+        <p>Powershift is the automatic gearbox in many Fords, including the Fiesta, Focus, Kuga and Mondeo. It changes gear quickly and smoothly, but it’s more complicated than a normal automatic, so it needs someone who knows it well.</p>
+        <h2>Signs something’s wrong</h2>
+        {signs(['Juddering when pulling away', 'Slipping, or a delay before the car moves', 'Jerky or clunky gear changes', 'A gearbox warning on the dashboard'])}
+        <h2>What we do</h2>
+        <p>We plug into your car’s computer and test the gearbox to find exactly what’s wrong. Then we explain it and give you a price. Often it’s the clutch or the part that controls the gearbox, not the whole thing, so we only replace what needs replacing. Every repair comes with a warranty.</p>''',
+        faq=[('How much does a Powershift repair cost?', 'It depends what’s wrong. Once we’ve found the fault we’ll give you a clear price before any work starts. Call us for a rough idea.'),
+             ('Is there a warranty?', 'Yes. Every repair comes with a warranty, and we’ll confirm the details with your quote.'),
+             ('Will it drive like new afterwards?', 'Yes. Repaired parts are brought back to the same standard as new ones, so it should drive and last just like the original.')]),
     'dsg': dict(
         title='DSG Gearbox Repair &amp; Servicing Bristol | Bristol Gearbox',
-        desc='DSG gearbox repair, servicing and mechatronic repairs in Bristol for VW, Audi, SEAT and Škoda. Bosch diagnostics, clear reports and a warranty. Free quotes.',
+        desc='DSG gearbox repair and servicing in Bristol for VW, Audi, SEAT and Škoda. We find the fault, explain it and fix it, with a warranty. Free quotes.',
         h1='DSG <span class="accent">gearbox repair</span>', crumb='DSG', img='assets/pages/diagnostics.jpg',
-        lead='Specialist diagnosis, servicing and repair of Volkswagen Group DSG gearboxes for VW, Audi, SEAT and Škoda, in Brislington, Bristol.',
+        lead='Repairs and servicing for the DSG automatic gearbox in VW, Audi, SEAT and Škoda cars.',
         prose=f'''
-        <h2>What is a DSG gearbox?</h2>
-        <p>DSG (Direct Shift Gearbox) is the dual-clutch automatic used across the Volkswagen Group. It is effectively two gearboxes in one housing, each with its own clutch: one for the odd gears and one for the even gears. That means two gears can be selected at once. If you’re in second, third is already lined up, and the change itself is just one clutch releasing as the other engages. That’s why DSG changes are fast and smooth, without the jolt you get from a conventional automated gearbox.</p>
-        <p>The changes are controlled by the mechatronic unit, which combines the electronic control module and the hydraulics. Depending on the version, DSG uses wet multi-plate clutches running in an oil bath or dry clutches, as fitted to many smaller cars.</p>
-        <h2>Common DSG problems</h2>
-        {signs(['Judder when pulling away or reversing', 'Jerky or delayed changes, especially between low gears', 'Flashing gear display or limp mode', 'Mechatronic and hydraulic pressure faults', 'Clunks or rattles from the dual-mass flywheel', 'Worn clutches and slipping'])}
-        <h3>DSG diagnostics</h3>
-        <p>Our workshop has modern Bosch diagnostic equipment adapted to Volkswagen DSG gearboxes, with dedicated interfaces that read the information recorded by the gearbox controller. That lets us identify faults quickly and accurately, assess the condition of the gearbox and its components, and avoid replacing parts that still work. You get a final report with the results.</p>
-        <h3>DSG servicing</h3>
-        <p>Wet-clutch DSG gearboxes need their oil and filter changed at the interval set by the manufacturer. A missed oil service is one of the most common causes of DSG problems. We carry out DSG oil services and clutch adaptations, and service the gearbox’s other consumables.</p>
-        <h3>DSG repair and replacement</h3>
-        <p>We repair mechatronic units, renew clutches and flywheels and rebuild DSG gearboxes, and we have access to high-quality replacement units when a rebuild isn’t the best option. Our experts will repair the gearbox quickly and professionally.</p>''',
+        <h2>What is DSG?</h2>
+        <p>DSG is the automatic gearbox used in most Volkswagen, Audi, SEAT and Škoda cars. It changes gear in a split second, which is why it feels so smooth. But it needs looking after, and it needs a specialist when it goes wrong.</p>
+        <h2>Signs something’s wrong</h2>
+        {signs(['Juddering when pulling away or reversing', 'Jerky or slow gear changes', 'A flashing gear display on the dashboard', 'The car going into a “safe mode” with less power'])}
+        <h2>What we do</h2>
+        <p>We plug into your car’s computer, find exactly what’s wrong and give you a clear price. We repair the faulty part, rebuild the gearbox or fit a replacement, whichever makes most sense. Many DSG gearboxes also need a regular oil change, and missing it is a common cause of problems, so we do that too.</p>''',
         faq=[]),
     'cvt': dict(
         title='CVT Gearbox Repair Bristol | Bristol Gearbox',
-        desc='CVT gearbox repair and servicing in Bristol: Toyota, Nissan, Honda and Audi Multitronic continuously variable transmissions. Bosch diagnostics and free quotes.',
+        desc='CVT gearbox repair and servicing in Bristol for Toyota, Nissan, Honda and Audi. We find the fault and fix it, with a warranty. Free quotes.',
         h1='CVT <span class="accent">gearbox repair</span>', crumb='CVT', img='assets/pages/servicing.jpg',
-        lead='Diagnosis, servicing and repair of continuously variable transmissions, from Toyota, Nissan and Honda CVTs to Audi Multitronic.',
+        lead='Repairs and servicing for CVT automatic gearboxes, common in Toyota, Nissan and Honda cars.',
         prose=f'''
-        <h2>What is a CVT gearbox?</h2>
-        <p>CVT stands for Continuously Variable Transmission, a type of single-speed automatic gearbox. Instead of a set of fixed gears, it uses two variable pulleys linked by a steel belt or chain, so the ratio changes smoothly and the engine can stay at its most efficient speed. CVTs are used in many different cars, but they are most often found in smaller ones: their compact size and simple construction make them more cost-effective there than a conventional automatic. Toyota, Nissan and Honda all use CVTs, and Audi’s Multitronic is a variation of the design.</p>
-        <p>In many ways a CVT drives like a regular automatic. There’s no clutch pedal, so you can drive one on an automatic-only UK licence. And like a regular automatic, a CVT version of a car usually costs more than the manual.</p>
-        <h2>Common CVT problems</h2>
-        {signs(['Whining or droning noise', 'Juddering or shuddering when accelerating', 'Revs rising without the car speeding up', 'Delay when selecting Drive or Reverse', 'Overheating warnings or limp mode', 'Fluid leaks'])}
-        <h3>CVT diagnostics and servicing</h3>
-        <p>CVTs are sensitive to the condition and type of their fluid, so using the correct manufacturer-spec fluid matters. We diagnose CVT faults with Bosch equipment that reads the transmission controller directly, then explain what we found and what it will cost to put right.</p>
-        <h3>CVT repair and replacement</h3>
-        <p>From fluid services and sensor faults to a full rebuild or a quality replacement unit, we’ll recommend the most sensible fix for your car and its value.</p>''',
+        <h2>What is a CVT?</h2>
+        <p>A CVT is a type of automatic gearbox with no fixed gears. Instead, it adjusts smoothly as you speed up, so you never feel a gear change. You’ll find them in lots of smaller cars, especially Toyotas, Nissans and Hondas, and in some Audis.</p>
+        <h2>Signs something’s wrong</h2>
+        {signs(['A whining or droning noise', 'Juddering when you accelerate', 'Revs rising but the car not speeding up', 'A delay when you put it in Drive or Reverse'])}
+        <h2>What we do</h2>
+        <p>We find the fault, explain it and give you a price before any work starts. Sometimes it just needs the right fluid; sometimes it needs a repair or a replacement gearbox. We’ll recommend what makes sense for your car.</p>''',
         faq=[]),
     'semi-auto': dict(
         title='Semi-Automatic Gearbox Repair Bristol | Bristol Gearbox',
-        desc='Semi-automatic and automated manual gearbox repair in Bristol: clutch actuators, calibration and control units. Bosch diagnostics and free quotes.',
+        desc='Semi-automatic gearbox repair in Bristol. Gearbox not changing, stuck in neutral or jerky? We find the fault and fix it. Free quotes.',
         h1='Semi-auto <span class="accent">gearbox repair</span>', crumb='Semi-auto', img='assets/pages/brakes.jpg',
-        lead='Repairs to semi-automatic (automated manual) gearboxes: clutch actuators, clutches, calibration and control units.',
+        lead='Gearbox not changing, stuck in neutral or jerky? We repair semi-automatic gearboxes.',
         prose=f'''
-        <h2>What is a semi-automatic gearbox?</h2>
-        <p>A semi-automatic gearbox is much more like a manual than an automatic. In fact, the gearbox itself is practically identical to a manual one. In a manual car, you press the clutch pedal to change gear. In a semi-automatic there’s no clutch pedal. Instead, a computer uses sensors and an actuator to operate the clutch automatically when you move the gear lever or the car decides to change.</p>
-        <p>Driving a semi-automatic feels very similar to driving a manual, except you don’t have to press a clutch pedal. You just move the lever and the car does the rest.</p>
-        <h2>Common semi-auto problems</h2>
-        {signs(['Gearbox won’t select a gear or gets stuck in neutral', 'Jerky or slow gear changes', 'Clutch slipping or biting in the wrong place', 'Clutch or gear-selection actuator failure', 'Hydraulic pump or fluid problems', 'Gearbox warning light on the dashboard'])}
-        <h3>Diagnostics and calibration</h3>
-        <p>Most semi-auto faults come down to the actuators, the clutch or the calibration between them. Our Bosch diagnostic equipment reads the gearbox controller and runs the calibration routines a semi-automatic needs after clutch or actuator work.</p>
-        <h3>Repair and replacement</h3>
-        <p>We replace clutches and actuators, repair hydraulic units and control modules, and calibrate everything so the gearbox changes smoothly again.</p>''',
+        <h2>What is a semi-automatic?</h2>
+        <p>A semi-automatic is a manual gearbox without a clutch pedal. The car works the clutch for you, so it drives like a manual but without the third pedal. They’re common in smaller cars.</p>
+        <h2>Signs something’s wrong</h2>
+        {signs(['Won’t go into gear, or gets stuck in neutral', 'Slow or jerky gear changes', 'The clutch slipping', 'A gearbox warning light'])}
+        <h2>What we do</h2>
+        <p>Most problems come down to the clutch or the part that operates it. We find the fault, replace what’s needed and set everything up so it changes smoothly again.</p>''',
         faq=[]),
 }
 
@@ -548,8 +531,8 @@ def about():
         <p>Our team handles everything from an accurate diagnosis to repairing or replacing your gearbox, so you don’t have to worry about a thing.</p>
         <p>Powershift and DSG gearboxes are what we do best, alongside CVT, semi-automatic and general repairs. Because we’re part of AutoTech Plus, the same workshop can also look after your MOT, servicing and everything else your car needs.</p>
         <ul class="ticks">
-          <li>Specialists in Powershift and DSG dual-clutch gearboxes</li>
-          <li>Bosch diagnostic equipment with gearbox-specific interfaces</li>
+          <li>Specialists in Powershift and DSG gearboxes</li>
+          <li>The right equipment to find gearbox faults fast</li>
           <li>Clear reports and quotes before any work starts</li>
           <li>Warranty on our repairs</li>
         </ul>
@@ -590,7 +573,7 @@ def offer():
         <p>We offer a wide range of repairs for everyday faults in passenger cars, as well as specialist repairs of Powershift and DSG gearboxes. We’re a well-known local company in Bristol with plenty of positive reviews.</p>
         <p>Our team will do everything from an accurate diagnosis to fixing or replacing your gearbox, so you don’t have to worry about a thing. Let us do what we’re best at: Powershift and DSG gearboxes and general repairs. Call us today.</p>
         <h3>Gearbox repairs</h3>
-        <p>Diagnosis, repair, rebuild and replacement of <a href="{p}powershift/">Powershift</a>, <a href="{p}dsg/">DSG</a>, <a href="{p}cvt/">CVT</a> and <a href="{p}semi-auto/">semi-automatic</a> gearboxes, including clutches, control units, mechatronics and dual-mass flywheels.</p>
+        <p>Diagnosis, repair, rebuild and replacement of <a href="{p}powershift/">Powershift</a>, <a href="{p}dsg/">DSG</a>, <a href="{p}cvt/">CVT</a> and <a href="{p}semi-auto/">semi-automatic</a> gearboxes.</p>
         <h3>General repairs and servicing</h3>
         <p>Through AutoTech Plus, our workshop also handles <a href="{MAIN}services.html#mot">MOTs</a>, <a href="{MAIN}services.html#servicing">servicing</a>, <a href="{MAIN}services.html#diagnostics">diagnostics</a>, <a href="{MAIN}services.html#brakes">brakes and clutches</a>, <a href="{MAIN}services.html#steering">suspension and steering</a> and <a href="{MAIN}services.html#aircon">air-con</a>.</p>
       </div>
